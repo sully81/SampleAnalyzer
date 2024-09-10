@@ -19,7 +19,7 @@ jobs:
         cmake -B ${{github.workspace}}/build -A x64
         cmake --build ${{github.workspace}}/build --config Release
     - name: Upload windows build
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: windows
         path: ${{github.workspace}}/build/Analyzers/Release/*.dll
@@ -34,12 +34,12 @@ jobs:
         cmake -B ${{github.workspace}}/build/arm64 -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=arm64
         cmake --build ${{github.workspace}}/build/arm64
     - name: Upload MacOS x86_64 build
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: macos_x86_64
         path: ${{github.workspace}}/build/x86_64/Analyzers/*.so
     - name: Upload MacOS arm64 build
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: macos_arm64
         path: ${{github.workspace}}/build/arm64/Analyzers/*.so
@@ -55,7 +55,7 @@ jobs:
         CC:   gcc-10
         CXX:  g++-10
     - name: Upload Linux build
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: linux
         path: ${{github.workspace}}/build/Analyzers/*.so
@@ -71,7 +71,7 @@ jobs:
       run: |
         cd ${{github.workspace}}/artifacts
         zip -r ${{github.workspace}}/analyzer.zip .
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: all-platforms
         path: ${{github.workspace}}/artifacts/**
